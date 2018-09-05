@@ -1,0 +1,10 @@
+1、spring 与 dubbo 2.5.3的集成
+2、springboot 方式启动
+3、通过代码，设置默认访问页  WebAppConfigurer
+4、集成freemarker、
+5、集成 @PropertySource  配置文件加载
+6、定义错误界面跳转 ErrorConfigurar
+7、定义异常处理器 HandlerExceptionResolverImpl
+8、集成 Swagger    resufull 文件
+9、集成 form 格式表单验证   UserController
+
