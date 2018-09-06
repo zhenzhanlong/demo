@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.ICityDao">
+
+	<!-- 通用查询sql -->
+	<sql id="iMCityDaoMapperSelect">
+	select 
+		id,type_id,city_code,city_name,code_value,up_code_id,sequence_no,remark,
+		channel_type
+		from sx_t_m_city_info 
+	</sql>
+
+	<select id="queryCityList" parameterType="CityInfoPO" resultType="CityInfoPO">
+		<include refid="iMCityDaoMapperSelect"></include>
+		<where>
+			type_id in (77)
+			<if test="id !=null" >
+				and id = #{id}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+			<if test="city_code !=null" >
+				and city_code = #{city_code}
+			</if>
+			<if test="city_name !=null" >
+				and city_name like CONCAT('%', #{city_name}, '%')
+			</if>
+			<if test="code_value !=null" >
+				and code_value = #{code_value}
+			</if>
+			<if test="up_code_id !=null" >
+				and up_code_id = #{up_code_id}
+			</if>
+			<if test="sequence_no !=null" >
+				and sequence_no = #{sequence_no}
+			</if>
+			<if test="remark !=null" >
+				and remark = #{remark}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+		</where>
+	</select>	
+	<select id="queryCityOne" parameterType="CityInfoPO" resultType="CityInfoPO">
+		<include refid="iMCityDaoMapperSelect"></include>
+		<where>
+			type_id in (77)
+			<if test="id !=null" >
+				and id = #{id}
+			</if>
+			<if test="city_code !=null" >
+				and city_code = #{city_code}
+			</if>
+			<if test="city_name !=null" >
+				and city_name = #{city_name}
+			</if>
+			<if test="code_value !=null" >
+				and code_value = #{code_value}
+			</if>
+			<if test="up_code_id !=null" >
+				and up_code_id = #{up_code_id}
+			</if>
+			<if test="sequence_no !=null" >
+				and sequence_no = #{sequence_no}
+			</if>
+			<if test="remark !=null" >
+				and remark = #{remark}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+		</where>
+	</select>
+	<select id="queryCityOneDetail" parameterType="CityInfoPO" resultMap="CityInfoPOMap">
+		<include refid="iMCityDaoMapperSelect"></include>
+		<where>
+			type_id in (77)
+			<if test="id !=null" >
+				and id = #{id}
+			</if>
+			<if test="city_code !=null" >
+				and city_code = #{city_code}
+			</if>
+			<if test="city_name !=null" >
+				and city_name = #{city_name}
+			</if>
+			<if test="code_value !=null" >
+				and code_value = #{code_value}
+			</if>
+			<if test="up_code_id !=null" >
+				and up_code_id = #{up_code_id}
+			</if>
+			<if test="sequence_no !=null" >
+				and sequence_no = #{sequence_no}
+			</if>
+			<if test="remark !=null" >
+				and remark = #{remark}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+		</where>
+	</select>
+	<select id="queryProvinceOne" parameterType="CityInfoPO" resultType="CityInfoPO">
+		<include refid="iMCityDaoMapperSelect"></include>
+		<where>
+			type_id in (76)
+			<if test="id !=null" >
+				and id = #{id}
+			</if>
+			<if test="city_code !=null" >
+				and city_code = #{city_code}
+			</if>
+			<if test="city_name !=null" >
+				and city_name = #{city_name}
+			</if>
+			<if test="code_value !=null" >
+				and code_value = #{code_value}
+			</if>
+			<if test="up_code_id !=null" >
+				and up_code_id = #{up_code_id}
+			</if>
+			<if test="sequence_no !=null" >
+				and sequence_no = #{sequence_no}
+			</if>
+			<if test="remark !=null" >
+				and remark = #{remark}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+		</where>
+	</select>
+	<select id="queryListForProvince" parameterType="CityInfoPO" resultType="CityInfoPO">
+		<include refid="iMCityDaoMapperSelect"></include>
+		<where>
+			type_id in (76)
+			<if test="id !=null" >
+				and id = #{id}
+			</if>
+			<if test="city_code !=null" >
+				and city_code = #{city_code}
+			</if>
+			<if test="city_name !=null" >
+				and city_name like CONCAT('%',#{city_name}, '%')
+			</if>
+			<if test="code_value !=null" >
+				and code_value = #{code_value}
+			</if>
+			<if test="up_code_id !=null" >
+				and up_code_id = #{up_code_id}
+			</if>
+			<if test="sequence_no !=null" >
+				and sequence_no = #{sequence_no}
+			</if>
+			<if test="remark !=null" >
+				and remark = #{remark}
+			</if>
+			<if test="channel_type !=null" >
+				and channel_type = #{channel_type}
+			</if>
+		</where>
+	</select>
+	<resultMap id="CityInfoPOMap" type="CityInfoPO">
+ 		<result property="id" column="id"/>
+        <result property="type_id" column="type_id"/>
+        <result property="city_code" column="city_code"/>
+        <result property="city_name" column="city_name"/>
+        <result property="code_value" column="code_value"/>
+        <result property="up_code_id" column="up_code_id"/>
+        <result property="sequence_no" column="sequence_no"/>
+        <result property="remark" column="remark"/>
+        <result property="channel_type" column="channel_type"/>
+    </resultMap>
+</mapper>
