@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sx.manage.dao.one.ICompanyOneDao">
+
+	<!-- 查询集合 -->
+	<select id="getListAll" parameterType="MCompanyEntityPO" resultType="MCompanyEntityPO">
+		select * from sx_t_m_company_info
+	</select>
+</mapper>

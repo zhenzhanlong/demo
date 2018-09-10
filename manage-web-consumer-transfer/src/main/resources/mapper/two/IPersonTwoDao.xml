@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sx.manage.dao.two.IPersonTwoDao">
+
+	<!-- 查询集合 -->
+	<select id="getListByPO" parameterType="MPersonalConsumerNetworkPO" resultType="MPersonalConsumerNetworkPO">
+		SELECT * FROM sx_t_m_personal_consumer_info_network
+		<where>
+			<if test="id !=null">
+				and id = #{id}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 查询数量 -->
+	<select id="countPerson" parameterType="MPersonalConsumerNetworkPO" resultType="java.lang.Long">
+		SELECT COUNT(p.id) FROM sx_t_m_personal_consumer_info_network p
+		<where>
+			<if test="id !=null">
+				and id = #{id}
+			</if>
+		</where>
+	</select>
+	<!-- 根据证件获取集合-->
+	<select id="getListByLawNo" parameterType="java.util.List" resultType="MPersonalConsumerNetworkPO">
+		SELECT * FROM sx_t_m_personal_consumer_info_network
+		<where>
+			<foreach collection="list" item="lawNo" index="index" open="(" separator="," close=")">
+				#{law_no}
+			</foreach>
+		</where>
+	</select>
+		<!-- 根据证件获取集合-->
+	<select id="getPO" parameterType="MPersonalConsumerNetworkPO" resultType="MPersonalConsumerNetworkPO">
+		SELECT * FROM sx_t_m_personal_consumer_info_network
+		<where>
+			<if test="law_no !=null">
+				and law_no = #{law_no}
+			</if>
+		</where>
+	</select>
+
+</mapper>
