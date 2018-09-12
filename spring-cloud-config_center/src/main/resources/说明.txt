@@ -1,0 +1,5 @@
+﻿访问本地文件配置时的路径
+http://localhost:8888/sso/dev
+
+#访问github的配置也是这样，但是 config-dev.yml或者config-dev.prpoerties内不能有中文，否则解析报错
+http://localhost:8888/config/dev
