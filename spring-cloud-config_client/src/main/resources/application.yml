@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: config_client
+  cloud:
+    config:
+      server:
+        native:
+#          searchLocations: classpath:/config
+        git:
+          uri: https://github.com/zhenzhanlong/config-repo.git
+          search-paths: config-repo
+          username: zhanlong1988@126.com
+          password: github147
+

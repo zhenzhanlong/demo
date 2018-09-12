@@ -1,0 +1,23 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8081/eureka/
+  #refresh:
+  #    sensitive: false
+
+spring:
+ application:
+   name: config
+ cloud:
+  config:
+   #uri:  http://localhost:8888/
+   name: neo-config
+   profile: pro 
+   #label: master
+   discovery:
+    enabled: true
+    service-id: config
+server:
+ port: 8889
+ context-path: /config_client
+ name: config_client
