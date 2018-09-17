@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 设置mybatis3 运行时的行为方式 -->
+	<settings>
+		<!-- 设置超时时间，它决定驱动等待一个数据库响应的时间 -->
+		<setting name="defaultStatementTimeout" value="60000" />
+		<!-- 启用或禁用 缓存 -->
+		<setting name="cacheEnabled" value="false" />
+		<!-- 启用或禁用延迟加载。当禁用时, 所有关联对象都会即时加载 必须和 aggressiveLazyLoading 一起使用 -->
+		<setting name="lazyLoadingEnabled" value="true" />
+		<!-- 是否 一次性加载 对象多有依赖的懒加载对象，还是用到那个懒加载对象就加载那个 true是：false：否 默认：true -->
+		<setting name="aggressiveLazyLoading" value="true" />
+	</settings>
+	<typeAliases>
+		<!-- 表字段类 -->
+		<typeAlias alias="MTableFieldPO" type="com.know.code.generation.mybatis.po.MTableFieldPO" />
+		<!-- 表名称 -->
+		<typeAlias alias="MTablePO" type="com.know.code.generation.mybatis.po.MTablePO" />
+	</typeAliases>
+</configuration> 
