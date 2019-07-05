@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="ServiceImpl">
+	<bodyCode>
+		package ${serviceImplPackage};
+
+		import java.util.ArrayList;
+		import java.util.List;
+		import com.sx.common.util.BeanUtils;
+		import
+		com.sx.enterprise.common.util.Page;
+		import javax.annotation.Resource;
+		import org.slf4j.Logger;
+		import org.slf4j.LoggerFactory;
+		import
+		org.springframework.stereotype.Service;
+
+		import ${poImport};
+		import ${voImport};
+		import ${formImport};
+		import ${serviceImport}
+
+		/**
+		* ${table_comment}
+		*
+		* @author zzl
+		*
+		*/
+		@Service("${serviceImplParam}")
+		public class ${serviceImplName} implements ${serviceName} {
+
+		private Logger log = LoggerFactory.getLogger(this.getClass());
+		//redis 缓存
+		@Resource(name = "redisCache")
+		private Cache cache;
+
+		//${table_comment} dao
+		@Resource
+		private ${daoName} ${daoParam};
+
+		/*** 增加 ***/
+
+		public ${resultVO}&lt;${formName}&gt; ${add}(${formName} paraForm){
+		log.debug("新增${table_comment} paraForm={}", paraForm);
+
+		${resultVO}&lt;${formName}&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm) {
+		result.falseMsg("e.parameter.is.null");
+		return result;
+		}
+		${poName} po = paraForm.convertToPO();
+		//po.setCreation_time(DateUtil.getTimestamp());
+		try {
+		// po.setId(KeyAutoCreateUtil.makePrimaryLong(PrimarykeyEnum.SX_T_E_BROWSE_RECORDS,cache));
+		//Long id = Long.valueOf(SquenceUtil.makePrimarykey(PrimarykeyClass.SX_SHOPPING_CATEGORY,\"\", cache) );
+		//po.setId(id);
+		// po.setId(KeyAutoCreateUtil.keyCreate());
+
+		${daoParam}.${add}(po);
+		paraForm.setId(po.getId());
+		} catch (Exception e) {
+		log.error("新增{table_comment}异常error={}", e);
+		result.falseMsg("e.param.config.add.is.error");
+		}
+		return result;
+
+		}
+
+		/*** 编辑 ***/
+		public ${resultVO}&lt;?&gt; ${update}(${formName} paraForm){
+		log.debug("编辑${table_comment}paraForm={}", paraForm);
+		${resultVO}&lt;${formName}&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm) {
+		result.falseMsg("e.parameter.is.null");
+		return result;
+		}
+		${poName} po = paraForm.convertToPO();
+		po.setUpdate_time(DateUtil.getTimestamp());
+		try {
+		${daoParam}.${update}(po);
+		} catch (Exception e) {
+		log.error("编辑${table_comment}异常error={}", e);
+		result.falseMsg("e.param.config.edit.is.error");
+		}
+		return result;
+		}
+		/*** 根据对象获取对象 ***/
+		public ${resultVO}&lt;?&gt; ${deleteById}(${formName} paraForm){
+		log.debug("删除${table_comment}form={}", paraForm);
+		${resultVO}&lt;?&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm || null == paraForm.getId()) {
+		result.falseMsg("e.parameter.is.null");
+		return result;
+		}
+		${poName} po = paraForm.convertToPO();
+		try {
+		${daoParam}.${deleteById}(po);
+		} catch (Exception e) {
+		log.error("删除参${table_comment}异常error={}", e);
+		result.falseMsg("e.param.config.delete.is.error");
+		}
+		return result;
+		}
+		/*** 根据对象获取对象 ***/
+		public ${resultVO}&lt;${voName}&gt; ${queryById}(${formName} paraForm){
+		log.debug("根据id查询${table_comment}form={}", paraForm);
+		${resultVO}&lt;${voName}&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm || null == paraForm.getId()) {
+		result.falseMsg("e.parameter.is.null");
+		return result;
+		}
+		${poName} po = paraForm.convertToPO();
+		try {
+		${poName} queryPO = ${daoParam}.${queryById}(po);
+		result.setData(this.createVO(queryPO));
+		} catch (Exception e) {
+		log.error("根据id查询${table_comment}异常error={}", e);
+		result.falseMsg("e.param.config.query.by.id.is.error");
+		}
+		return result;
+		}
+		/*** 根据集合数据 ***/
+		public ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${list}(${formName} paraForm){
+		log.debug("查询${table_comment}集合paraForm={}", paraForm);
+		${resultVO}&lt;List&lt;${voName}&gt;&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm) {
+		result.falseMsg("e.parameter.is.null");
+		return result;
+		}
+		${poName} po = paraForm.convertToPO();
+		try {
+		List&lt;${poName}&gt; poList =${daoParam}.${list}(po);
+		result.setData(this.createVOList(poList));
+		} catch (Exception e) {
+		log.error("查询${table_comment}集合异常error={}", e);
+		result.falseMsg("e.param.config.query.list.is.error");
+		}
+		return result;
+
+		}
+		/*** 根据获取集合总数 ***/
+		public ${resultVO}&lt;Long&lt; ${count}(${formName} paraForm){
+		log.debug("查询${table_comment}数量paraForm={}", paraForm);
+		if (null == paraForm) {
+		return new ${resultVO}&lt;&lt;(Long.valueOf("0"));
+		}
+		${poName} po = paraForm.convertToPO();
+		try {
+		Long num = ${daoParam}.${count}(po);
+		return new ${resultVO}(num);
+		} catch (Exception e) {
+		log.error("查询${table_comment}异常error={}", e);
+		}
+		return new ${resultVO}&lt;&lt;(Long.valueOf("0"));
+		}
+		
+		
+		
+		/*** 查询翻页信息 ***/
+		public ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${page}(${formName} paraForm){
+		log.info("查询${table_comment}列表paraForm ={}", paraForm);
+		${resultVO}&lt;List&lt;${voName}&gt;&gt; result = new ${resultVO}&lt;&gt;();
+		if (null == paraForm.getPageNumber() || null == paraForm.getPageSize()) {
+		log.info("参数为空paraForm={}", paraForm);
+		result.falseMsg("e.parameter.page.param.is.null");
+		return result;
+		}
+
+		${poName} po = paraForm.convertToPO();
+		try {
+		// 查询数量
+		Long count = ${daoParam}.${count}(po);
+		Page&lt;?&gt; page = new Page&lt;&gt;(paraForm.getPageNumber(), paraForm.getPageSize(), count.intValue());
+		po.setPageNumber(page.getStartRow());
+		po.setPageSize(page.getPageSize());
+		// 查询数据
+		List&lt;${poName}&gt; list = ${daoParam}.${page}(po);
+		result.setData(createVOList(list));
+		result.setRecordsFiltered(count);
+		result.setRecordsTotal(count);
+		} catch (Exception e) {
+		log.info("查询${table_comment}列表失败error={}", e);
+		result.falseMsg("e.param.config.query.page.is.error");
+		}
+		return result;
+		}
+		/** poList 转 voList **/
+		private List&lt;${voName}&gt; createVOList(List&lt;${poName}&gt; poList) {
+		if (null == poList || poList.isEmpty()) {
+		return new ArrayList&lt;&gt;();
+		}
+		List&lt;${voName}&gt; voList = new ArrayList&lt;&gt;();
+		for (${poName} po : poList) {
+		voList.add(this.createVO(po));
+		}
+		return voList;
+		}
+
+		/** po 转 vo **/
+		private ${voName} createVO(${poName} po) {
+		${voName} vo = new ${voName}();
+		try {
+		// 属性复制
+		BeanUtils.copyProperties(po, vo, false);
+		} catch (Exception ex) {
+		log.error("属性复制出错error={}", ex);
+		}
+		return vo;
+		}
+		}
+	</bodyCode>
+	<!-- 有自己查询方法的字段 -->
+	<queryField>
+	</queryField>
+	<!-- 有自己更新方法的字段 -->
+	<updateField>
+	</updateField>
+	<!-- 有自己删除方法的字段 -->
+	<deleteField>
+	</deleteField>
+	<!-- 有自己排序方法的字段 -->
+	<orderByField>
+	</orderByField>
+</mapper>

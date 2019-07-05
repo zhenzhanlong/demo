@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo" xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://code.alibabatech.com/schema/dubbo   http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd  
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx.xsd
+		">
+	<!-- 配置的数据源，service的扫描，mybatis的配置文件加载 -->
+	<import resource="classpath*:/datasources/dbcp-jdbc.xml" />
+	<!-- 自动扫描 .controller -->
+	<mvc:annotation-driven />
+	<context:component-scan base-package="imitate">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+<!-- 
+	<task:annotation-driven scheduler="qbScheduler" mode="proxy" />
+	<task:scheduler id="qbScheduler" pool-size="10" />
+
+	对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+</beans>

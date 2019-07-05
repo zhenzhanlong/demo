@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.enterprise.dao.param.config.IParamConfigDao">
+
+	<!-- 通用查询sql -->
+	<sql id="IParamConfigDaoSelect">
+		select id,config_code,config_name,config_value,config_desc,update_time,creation_time from sx_t_e_param_config
+	</sql>
+
+	<update id="editParamConfig" parameterType="ParamConfigPO">
+		update sx_t_e_param_config
+		<set>
+			<if test="config_code !=null">
+				config_code = #{config_code},
+			</if>
+			<if test="config_name !=null">
+				config_name = #{config_name},
+			</if>
+			<if test="config_value !=null">
+				config_value = #{config_value},
+			</if>
+			<if test="config_desc !=null">
+				config_desc = #{config_desc},
+			</if>
+			<if test="update_time !=null">
+				update_time = #{update_time},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<insert id="saveParamConfig" useGeneratedKeys="true" keyProperty="id">
+		insert into sx_t_e_param_config(
+		id,
+		config_code,
+		config_name,
+		config_value,
+		config_desc,
+		update_time,
+		creation_time,
+		config_type
+		)
+		values(
+		#{id},
+		#{config_code},
+		#{config_name},
+		#{config_value},
+		#{config_desc},
+		#{update_time},
+		#{creation_time},
+		#{config_type}
+		)
+	</insert>
+
+	<delete id="delParamConfig" parameterType="ParamConfigPO">
+		delete from sx_t_e_param_config
+		<where>
+			and id = #{id}
+		</where>
+	</delete>
+	<select id="getMaxCode" resultType="ParamConfigPO">
+		<include refid="IParamConfigDaoSelect"></include>
+		<where>id IN (
+			SELECT MAX(id) id FROM sx_t_e_param_config)
+		</where> 
+	</select>
+
+	<select id="queryParamConfigList" parameterType="ParamConfigPO" resultType="ParamConfigPO">
+		<include refid="IParamConfigDaoSelect"></include>
+		<where>
+			<if test="id !=null">
+				and id = #{id}
+			</if>
+			<if test="config_code !=null">
+				and config_code = #{config_code}
+			</if>
+			<if test="config_name !=null">
+				and config_name = #{config_name}
+			</if>
+			<if test="config_value !=null">
+				and config_value = #{config_value}
+			</if>
+			<if test="config_desc !=null">
+				and config_desc like CONCAT('%', #{config_desc}, '%')
+			</if>
+			<if test="update_time !=null">
+				and update_time = #{update_time}
+			</if>
+			<if test="creation_time !=null">
+				and creation_time = #{creation_time}
+			</if>
+			<if test="config_type !=null">
+				and config_type = #{config_type}
+			</if>
+
+		</where>
+		<if test="pageNumber != null || pageSize != null">
+			limit ${pageNumber},${pageSize}
+		</if>
+	</select>
+	<select id="countParamConfig" parameterType="ParamConfigPO" resultType="java.lang.Long">
+		select count(id) from sx_t_e_param_config
+		<where>
+			<if test="id !=null">
+				and id = #{id}
+			</if>
+			<if test="config_code !=null">
+				and config_code = #{config_code}
+			</if>
+			<if test="config_name !=null">
+				and config_name = #{config_name}
+			</if>
+			<if test="config_value !=null">
+				and config_value = #{config_value}
+			</if>
+			<if test="config_desc !=null">
+				and config_desc like CONCAT('%', #{config_desc}, '%')
+			</if>
+			<if test="update_time !=null">
+				and update_time = #{update_time}
+			</if>
+			<if test="creation_time !=null">
+				and creation_time = #{creation_time}
+			</if>
+			<if test="config_type !=null">
+				and config_type = #{config_type}
+			</if>
+		</where>
+	</select>
+
+	<select id="queryParamConfigById" parameterType="ParamConfigPO" resultType="ParamConfigPO">
+		<include refid="IParamConfigDaoSelect"></include>
+		<where>
+			<if test="id !=null">
+				and id = #{id}
+			</if>
+			<if test="config_code !=null">
+				and config_code = #{config_code}
+			</if>
+			<if test="config_name !=null">
+				and config_name = #{config_name}
+			</if>
+			<if test="config_value !=null">
+				and config_value = #{config_value}
+			</if>
+			<if test="config_desc !=null">
+				and config_desc = #{config_desc}
+			</if>
+			<if test="update_time !=null">
+				and update_time = #{update_time}
+			</if>
+			<if test="creation_time !=null">
+				and creation_time = #{creation_time}
+			</if>
+			<if test="config_type !=null">
+				and config_type = #{config_type}
+			</if>
+		</where>
+
+	</select>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\entity.dtd">
+<mapper fileType="ServiceImpl">
+	<bodyCode>
+		package ${formImport};
+		import java.io.Serializable;
+		import com.sx.common.util.json.JackJsonUtil;
+		import
+		com.fasterxml.jackson.annotation.JsonInclude;
+		import com.sx.common.util.BeanUtils;
+		import io.swagger.annotations.ApiModel;
+		import
+		io.swagger.annotations.ApiModelProperty;
+		import org.apache.commons.lang3.StringUtils;
+
+		/**${table_comment} form 类**/
+		@ApiModel(description = "${table_comment}")
+		public class ${voName} extends BaseVO implements Serializable {
+
+		/** 序列化 */
+		private static final long serialVersionUID = ${serialVersionUID};
+
+		//属性字段部分
+		${attributeFields}
+
+		//构造方法部分
+		${constractor}
+
+		public ${voName}(${poName} pa){
+		if(null != po ){
+		try {
+		BeanUtils.copyProperties(po,this, false);
+		} catch (Exception e) {
+		}
+		}
+		}
+		
+		//get 、set代码部分
+		${getSetMethod}
+
+
+		@Override
+		public String toString() {
+		return "${voName}:"+JackJsonUtil.objToJson(this);
+		}
+		}
+
+	</bodyCode>
+</mapper>

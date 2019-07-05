@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?><!-- ../mybatis-3-code-generation.dtd -->
+<!-- imitate/mybatis/code/generation/builder/xml/mybatis-3-code-generation.dtd -->
+<!DOCTYPE configuration SYSTEM
+ "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\mybatis-3-code-generation.dtd">
+<configuration>
+	<!-- 属性设置 -->
+	<settings>
+		<!-- 数据库实例名 -->
+		<setting name="mysqlInstance" value="enterprise" />
+		<!-- 表明前缀 -->
+		<setting name="databaseNamePrefix" value="sx_t_e_" />
+		<!-- 有的时候只需要生成一个或者几个表的内容，没有必要每一次都新增 , -->
+		<setting name="createTableLimit" value="true" />
+		<!-- 是否使用驼峰 -->
+		<setting name="attributeHump" value="true" />
+		<!-- 使用用户自己配置 -->
+		<setting name="useConfigByUser" value="true" />
+		<!-- vo 集成po 这样就不用再生成 很多数据库字段的 get，set方法，也不用生命变量、YES,NO <setting name="vo_extend_po" value="YES" /> -->
+		<!-- orderby 的方法是否需要生成 <setting name="order_by_switch" value="YES" /> -->
+
+		<!-- api 接口前缀 -->
+		<setting name="apiPrefix" value="I" />
+		<!-- class 类前缀 -->
+		<setting name="calssPrefix" value="" />
+
+
+		<!-- <setting name="" value="" /> -->
+	</settings>
+	<!-- 只生成配置表的代码 -->
+	<tables>
+		<table>sx_t_e_project_order</table>
+	</tables>
+	<fields>
+		<!-- 暂时没有需求 -->
+		<querys>
+			<query>
+				<fieldList>
+					<value>skuId</value>
+					<value>sku</value>
+					<value>sku_id</value>
+					<value>trade_num</value>
+				</fieldList>
+			</query>
+		</querys>
+		<!-- 有自己update 的字段 -->
+		<updates>
+			<update condition="ById">
+				<fieldList>
+					<value>status</value>
+					<value>trade_num</value>
+				</fieldList>
+			</update>
+			<!-- update 全量时不能更新字段 -->
+			<cannot>
+				<fieldList>
+					<value>create_time</value>
+					<value>create_date</value>
+					<value>id</value>
+					<value>createTime</value>
+					<value>state</value>
+					<value>data_status</value>
+					<value>status</value>
+					<value>trade_num</value>
+				</fieldList>
+			</cannot>
+		</updates>
+		<!-- 有自己delete 的字段 -->
+		<deletes>
+			<delete>
+				<fieldList>
+					<value>consumer_id</value>
+					<value>skuId</value>
+					<value>trade_num</value>
+
+				</fieldList>
+			</delete>
+		</deletes>
+		<!-- 排序字段 -->
+		<orderBys><!-- 排序字段 有自己方法的字段，如sno,需要单独的获取最大sno，更新sno，获取选择数据前面或者后面的数据 方法等 -->
+			<orderBy condition=" desc ">
+				<fieldList>
+					<value>sno</value>
+					<value>trade_num</value>
+					<value>order_num</value>
+				</fieldList>
+			</orderBy>
+		</orderBys>
+		<!-- 枚举字段配置 -->
+		<enums>
+			<!-- 状态枚举 -->
+			<enum condition="com.sx.manage.constants.MDataStatusType">
+				<fieldList>
+					<value>data_status</value>
+				</fieldList>
+			</enum>
+			<!-- 状态枚举 -->
+			<enum condition="com.sx.enterprise.type.ProjectType">
+				<fieldList>
+					<value>order_type</value>
+					<value>initiate_type</value>
+					<value>apply_type</value>
+				</fieldList>
+			</enum>
+			<!-- 状态枚举 -->
+			<enum condition="com.sx.enterprise.type.trade.TradeStatus">
+				<fieldList>
+					<value>trade_status</value>
+				</fieldList>
+			</enum>
+			<!-- 状态枚举 -->
+			<enum condition="com.sx.enterprise.type.OrderStatus">
+				<fieldList>
+					<value>order_status</value>
+				</fieldList>
+			</enum>
+			<!-- 类型字段 
+			<enum condition="com.sx.manage.constants.type.func.MSystemType">
+				<fieldList>
+					<value>system_code</value>
+				</fieldList>
+			</enum>-->
+		</enums>
+		<bases>
+			<base>
+				<fieldList>
+					<value>data_status</value>
+					<value>ids_</value>
+					<value>create_user_id</value>
+					<value>create_time</value>
+					<value>edit_time</value>
+					<value>edit_user_id</value>
+					<value>status_in</value>
+					<value>create_user_name</value>
+					<value>edit_user_name</value>
+					<value>create_date_end</value>
+					<value>create_date_begin</value>
+					<value>remark</value>
+					<value>update_time</value>
+				</fieldList>
+			</base>
+		</bases>
+	</fields>
+	<!-- 文件生成默认路径 -->
+	<paths>
+		<!-- 文件生成的路径 -->
+		<path name="relativePath" value="E:/enterprise/" />
+		<!-- 程序的前半部分路径 -->
+		<path name="packagePath" value="com.sx.enterprise" />
+		<!-- po -->
+		<path name="pathPo" value="mybatis.po" />
+		<!-- vo -->
+		<path name="pathVo" value="mybatis.vo" />
+		<!-- form -->
+		<path name="pathForm" value="mybatis.form" />
+		<!-- dao -->
+		<path name="pathDaoApi" value="dao" />
+		<!-- mybatis -->
+		<path name="pathMapper" value="mapper" />
+		<!-- service -->
+		<path name="pathServiceImpl" value="service.impl" />
+		<!-- 默认service -->
+		<path name="pathService" value="service" />
+		<!-- biz -->
+		<path name="pathBizImpl" value="biz.impl" />
+		<!-- biz的api -->
+		<path name="pathBiz" value="biz" />
+		<!-- web端service -->
+		<path name="pathWebService" value="webservice" />
+		<!-- web端service实现类 -->
+		<path name="pathWebServiceImpl" value="webservice.impl" />
+		<!-- controller -->
+		<path name="pathController" value="controller" />
+		<!-- action -->
+		<path name="pathAction" value="action" />
+		<!-- 异常 -->
+		<path name="pathException" value="exception" />
+
+	</paths>
+
+	<resultsVO>
+		<!-- #登录用户vo -->
+		<resultVO name="loginVO" value="ConsumerLoginVO" path="com.sx.shop.manager.vo.shopadministrator.ShopAdminVO" />
+		<!-- 查询结果ListVO <resultVO name="resultListVO" value="ResultListVO" path="com.sx.manage.mybatis.vo.result.ResultListVO" /> -->
+		<!-- 查询单个对象VO <resultVO name="resultObjectVO" value="ResultObjectVO" path="com.sx.manage.mybatis.vo.result.ResultObjectVO" /> -->
+		<!-- 结果 boolean类型 <resultVO name="resultBooleanVO" value="ResultBooleanVO" path="com.sx.manage.mybatis.vo.result.ResultBooleanVO" /> -->
+		<!-- 查询结果ListVO -->
+		<resultVO name="resultListVO" value="ResultVO" path="com.sx.manage.mybatis.vo.result.ResultVO" />
+		<!-- 查询单个对象VO -->
+		<resultVO name="resultObjectVO" value="ResultVO" path="com.sx.manage.mybatis.vo.result.ResultVO" />
+		<!-- 结果 boolean类型 -->
+		<resultVO name="resultBooleanVO" value="ResultVO" path="com.sx.manage.mybatis.vo.result.ResultVO" />
+		<!-- 方法返回结果包装类 -->
+		<resultVO name="resultVO" value="ResultVO" path="com.sx.manage.mybatis.vo.result.ResultVO" />
+	</resultsVO>
+	<!-- -->
+	<methodNames>
+		<dao>
+			<method name="maxCode" value="getMaxCode" />
+			<method name="queryBySno" value="queryBySno" />
+			<method name="queryMaxSno" value="queryMaxSno" />
+			<method name="add" value="add" />
+			<method name="addBatch" value="addBatch" />
+			<method name="deleteById" value="deleteById" />
+			<method name="update" value="update" />
+			<method name="queryById" value="queryById" />
+			<method name="page" value="page" />
+			<method name="editStatus" value="editStatus" />
+			<method name="list" value="queryList" />
+			<method name="count" value="count" />
+			<!-- <method name="" value="" /> -->
+		</dao>
+		<service>
+			<method name="maxCode" value="getMaxCode" />
+			<method name="queryBySno" value="queryBySno" />
+			<method name="queryMaxSno" value="queryMaxSno" />
+			<method name="add" value="add" />
+			<method name="addBatch" value="addBatch" />
+			<method name="deleteById" value="deleteById" />
+			<method name="update" value="update" />
+			<method name="queryById" value="queryById" />
+			<method name="page" value="page" />
+			<method name="editStatus" value="editStatus" />
+			<method name="list" value="queryList" />
+			<method name="count" value="count" />
+			<!-- <method name="" value=""> <method name="" value=""> -->
+		</service>
+		<biz>
+			<method name="maxCode" value="getMaxCode" />
+			<method name="queryBySno" value="queryBySno" />
+			<method name="queryMaxSno" value="queryMaxSno" />
+			<method name="add" value="add" />
+			<method name="addBatch" value="addBatch" />
+			<method name="deleteById" value="deleteById" />
+			<method name="update" value="update" />
+			<method name="queryById" value="queryById" />
+			<method name="page" value="page" />
+			<method name="editStatus" value="editStatus" />
+			<method name="list" value="queryList" />
+			<method name="count" value="count" />
+			<!-- <method name="" value=""> -->
+		</biz>
+		<webService>
+			<method name="maxCode" value="getMaxCode" />
+			<method name="queryBySno" value="queryBySno" />
+			<method name="queryMaxSno" value="queryMaxSno" />
+			<method name="add" value="add" />
+			<method name="addBatch" value="addBatch" />
+			<method name="deleteById" value="deleteById" />
+			<method name="update" value="update" />
+			<method name="queryById" value="queryById" />
+			<method name="page" value="page" />
+			<method name="editStatus" value="editStatus" />
+			<method name="list" value="queryList" />
+			<method name="count" value="count" />
+			<!-- <method name="" value=""> <method name="" value=""> -->
+		</webService>
+	</methodNames>
+</configuration> 

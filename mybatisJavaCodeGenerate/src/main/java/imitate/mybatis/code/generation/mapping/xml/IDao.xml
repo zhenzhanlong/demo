@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="IDAO">
+	<bodyCode>
+		package ${daoPackage};
+
+		import java.util.List;
+
+		import ${poImport};
+		/**
+		*
+		* ${table_comment} dao接口
+		* @author Automatic Generation
+		* @version 1.0.0
+		*/
+		public interface ${daoName} {
+		/**
+		* 增加数据
+		*
+		* @param po
+		*/
+		public int ${add}(${poName} po);
+		/**
+		* 批量增加数据
+		*
+		* @param po
+		*/
+		public int ${addBatch}(${poName} po);
+		/**
+		* 根据id删除
+		*
+		* @param po
+		*/
+		public int ${deleteById}(${poName} po);
+		/**
+		* 根据id编辑
+		*
+		* @param po
+		*/
+		public int ${update}(${poName} po);
+		/**
+		* 根据id查询
+		*
+		* @param po
+		*/
+		public ${poName} ${queryById}(${poName} po);
+		/**
+		* 分页查询
+		*
+		* @param po
+		*/
+		public List
+		&lt; ${poName} &gt; ${page}(${poName} po);
+		/**
+		* 数量查询
+		*
+		* @param po
+		*/
+		public Long ${count}(${poName} po);
+		/**
+		* 获取最大code数据
+		*
+		*
+		@param po
+		*/
+		public ${poName} ${maxCode}();
+		}
+	</bodyCode>
+	<!-- 有自己查询方法的字段 -->
+	<queryField>
+		/**
+		* 根据${queryField}查询
+		*
+		* @param po
+		*/
+		public ${poName} queryBy${queryField}(${poName} po);
+
+	</queryField>
+	<!-- 有自己更新方法的字段 -->
+	<updateField>
+		/**
+		* 根据${updateField}更新信息
+		*
+		* @param po
+		*/
+		public Integer updateBy${updateField}(${poName} po);
+	</updateField>
+	<!-- 有自己删除方法的字段 -->
+	<deleteField>
+		/**
+		* 根据${deleteField}删除
+		*
+		* @param po
+		*/
+		public Integer deleteBy${deleteField}(${poName} po);
+	</deleteField>
+	<!-- 有自己排序方法的字段 -->
+	<orderByField>
+		/**
+		* 查询需要交换${orderField}的数据
+		*/
+		public ${poName} queryBy${orderField}(${poName} po);
+		/**
+		* 获取最大的排序值
+		*
+		* @param po
+		*/
+		public Integer queryMax${orderField}(${poName} po);
+	</orderByField>
+</mapper>

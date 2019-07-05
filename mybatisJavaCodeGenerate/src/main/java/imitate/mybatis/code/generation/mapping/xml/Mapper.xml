@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="ServiceImpl">
+	<bodyCode>
+		<!--  -->
+		
+
+		<remark>通用查询sql</remark>
+		<sql id="${daoSelectSql}">
+			select ${queryFields}
+			from ${table_name}
+		</sql>
+		<sql id="${daoWhereSql}">
+			<where>
+				${daoWhereField}
+			</where>
+		</sql>
+
+		<remark>
+			结果转换 （界面显示非用户基本信息字段使用
+			<!-- <resultMap id="${poMap}" type="${poName}">
+				${resumtMapResults}
+			</resultMap> -->
+		</remark>
+
+		<remark>数据新增</remark>
+		<insert id="${add}" parameterType="${poName}">
+			insert into ${table_name}
+			(${insertFields})
+			values
+			(${insertFieldValues})
+		</insert>
+		<remark>批量增加 </remark>
+		<insert id="insertBatch" parameterType="java.util.List">
+			insert into sx_t_e_catetory_attribute_relation
+			(id,category_id,attribute_id,create_time)
+			values
+			<foreach collection="list" item="item" index="index" separator=",">
+				#{item.id},#{item.category_id},#{item.attribute_id},#{item.create_time}
+			</foreach>
+		</insert>
+		<remark>根据id删除 </remark>
+		<delete id="${deleteById}" parameterType="BannerPO">
+			delete from ${table_name}
+			<where>
+				id = #{id}
+			</where>
+		</delete>
+		<remark>更新 </remark>
+		<update id="${update}" parameterType="${poName}">
+			update ${table_name}
+			<set>
+				${updateFields}
+			</set>
+			<where>
+				id=#{id}
+			</where>
+		</update>
+		<remark>2 根据 consumer_id 获取用户信息</remark>
+		<select id="${queryById}" parameterType="${poName}" resultMap="${poMap}">
+			<include refid="${daoSelectSql}"></include>
+			<where>
+				id = #{ id }
+			</where>
+		</select>
+
+		<remark> 修改用户状态</remark>
+		<update id="${editStatus}" parameterType="${poName}">
+			update ${table_name}
+			<set>
+				data_status=#{data_status}
+			</set>
+			<where>
+				id = #{id}
+			</where>
+		</update>
+
+		<remark> 获取个人用户翻页信息</remark>
+		<select id="${list}" parameterType="${poName}" resultMap="${poMap}">
+			<include refid="${daoSelectSql}"></include>
+			<include refid="${daoWhereSql}"></include>
+			ORDER BY id desc
+		</select>
+
+
+		<remark>获取个人用户翻页信息</remark>
+		<select id="${page}" parameterType="${poName}" resultMap="${poMap}">
+			<include refid="${daoSelectSql}"></include>
+			<include refid="${daoWhereSql}"></include>
+			ORDER BY id desc
+			limit #{pageNumber},#{pageSize}
+		</select>
+
+
+		<remark>23 获取满足条件的用户信息数量</remark>
+		<select id="${count}" parameterType="${poName}" resultType="java.lang.Long">
+			SELECT COUNT(id) FROM ${table_name}
+			<include refid="${daoWhereSql}"></include>
+		</select>
+
+
+		<remark> 31 批量修改用户状态信息 </remark>
+		<update id="updateStateBatch" parameterType="${poName}">
+			update ${table_name}
+			<set>
+				data_status=#{data_status}
+			</set>
+			<where>
+				id in
+				<foreach collection="ids_" item="id" index="index" open="(" separator="," close=")">
+					#{id}
+				</foreach>
+			</where>
+		</update>
+
+		<remark> 验证数据 </remark>
+		<select id="queryListValidate" parameterType="${poName}" resultMap="${poMap}">
+			<include refid="${daoSelectSql}"></include>
+			<where>
+				<include refid="${daoWhereSql}"></include>
+			</where>
+		</select>
+	</bodyCode>
+	<remark>自定义 orderByField的方法</remark>
+	<orderByField>
+		    <remark>根据sno 查询集合</remark>
+			<select id="queryListBy${orderField}" parameterType="${poName}" resultMap="${poMap}">
+				<include refid="${daoSelectSql}"></include>
+				<where>
+					<if test='upOrDown=="UP"'>
+						sno &lt; #{${orderField}}
+					</if>
+					<if test='upOrDown=="DOWN"'>
+						sno &gt; #{${orderField}}
+					</if>
+				</where>
+				ORDER BY ${orderField}
+				<if test='upOrDown=="UP"'>
+					DESC
+				</if>
+				LIMIT 0,1;
+			</select>
+		
+		<remark>查询最大的sno</remark>
+			<select id="queryMax${orderField}" resultType="java.lang.Integer">
+				select max(${orderField}) from ${table_name}
+			</select>
+		
+	</orderByField>
+</mapper>

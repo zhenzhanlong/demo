@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="Controller">
+	<bodyCode>
+		package ${controllerPackage};
+
+		import org.slf4j.Logger;
+		import org.slf4j.LoggerFactory;
+		import org.springframework.beans.factory.annotation.Autowired;
+		import org.springframework.web.bind.annotation.RequestBody;
+		import org.springframework.web.bind.annotation.RequestMapping;
+		import org.springframework.web.bind.annotation.RequestMethod;
+		import org.springframework.web.bind.annotation.RestController;
+		
+		
+		import ${webServiceImport};
+		import ${voImport};
+		import ${formImport};
+		
+		
+		/**
+		 * ${table_comment}
+		 * 
+		 * @author Administrator
+		 *
+		 */
+		@RestController
+		@RequestMapping("/${tableNameHandle}")
+		@Api(value = "${table_comment}", tags = { "${table_comment}" })
+		public class ${controllerName}  implements MBaseController {
+			private Logger log = LoggerFactory.getLogger(this.getClass());
+		
+			//${table_comment}	
+			@Resource(name = "${webServiceImplParam}")
+			private ${webServiceName} ${webServiceImplParam};
+			
+			
+			@Override
+			@RequestMapping(value = "/add", method = RequestMethod.POST)
+			@ApiOperation("新增")
+			public ${resultVO}&lt;${voName}&gt; ${add}(@RequestBody ${formName} paraForm) {
+				log.debug("新增${table_comment}form={},loginVO={}", paraForm, loginVO);
+				return ${webServiceImplParam}.${add}(form,this.currentLogin());
+			}
+		
+			@Override
+			@RequestMapping(value = "/edit", method = RequestMethod.POST)
+			@ApiOperation("编辑")
+			public ${resultVO}&lt;?&gt; ${update}(@RequestBody ${formName} paraForm) {
+				log.debug("修改${table_comment}form={},loginVO={}", paraForm, loginVO);
+				return ${webServiceImplParam}.${update}(form,this.currentLogin());
+			}
+		
+			@Override
+			@RequestMapping(value = "/delete", method = RequestMethod.POST)
+			@ApiOperation("删除")
+			public ${resultVO}&lt;?&gt; ${deleteById}(@RequestBody ${formName} paraForm) {
+				log.debug("删除${table_comment}form={},loginVO={}", paraForm, loginVO);
+				return ${webServiceImplParam}.${deleteById}(form,this.currentLogin());
+			}
+		
+			@Override
+			@RequestMapping(value = "/info", method = RequestMethod.POST)
+			@ApiOperation("详情")
+			public ${resultVO}&lt;?&gt; ${queryById}(@RequestBody ${formName}  paraForm) {
+				log.debug("根据id查询${table_comment}form={}", paraForm);
+				return ${webServiceImplParam}.${queryById}(form,this.currentLogin());
+			}
+		
+			@Override
+			@RequestMapping(value = "/list", method = RequestMethod.POST)
+			@ApiOperation("集合查询")
+			public ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${list}(@RequestBody ${formName} paraForm) {
+				log.debug("根据form查询${table_comment}list,form={}", paraForm);
+				return ${webServiceImplParam}.${list}(form,this.currentLogin());
+			}
+		
+			@Override
+			@RequestMapping(value = "/list", method = RequestMethod.POST)
+			@ApiOperation("分页信息查询")
+			public  ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${page}(@RequestBody ${formName} paraForm) {
+				log.debug("根据form查询${table_comment}列表,form={}", paraForm);
+				return ${webServiceImplParam}.${page}(paraForm,this.currentLogin());
+			}
+	
+	}
+
+	</bodyCode>
+	<!-- 有自己查询方法的字段 -->
+	<queryField>
+	</queryField>
+	<!-- 有自己更新方法的字段 -->
+	<updateField>
+	</updateField>
+	<!-- 有自己删除方法的字段 -->
+	<deleteField>
+	</deleteField>
+	<!-- 有自己排序方法的字段 -->
+	<orderByField>
+	</orderByField>
+</mapper>

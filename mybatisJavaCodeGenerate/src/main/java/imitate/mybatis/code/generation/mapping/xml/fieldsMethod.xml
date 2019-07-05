@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="IDAO">
+	<bodyStr>
+		package ${daoPackage};
+
+		import java.util.List;
+
+		import ${poImport};
+		/**
+		*
+		* ${table_comment} dao接口
+		* @author Automatic Generation
+		* @version 1.0.0
+		*/
+		public interface ${daoName} {
+		/**
+		* 增加数据
+		*
+		* @param po
+		*/
+		public int ${insertMethodName}(${poName} po);
+		/**
+		* 批量增加数据
+		*
+		* @param po
+		*/
+		public int ${insertBatchMethodName}(${poName} po);
+		/**
+		* 根据id删除
+		*
+		* @param po
+		*/
+		public int ${deleteByIdMethodName}(${poName} po);
+		/**
+		* 根据id编辑
+		*
+		* @param po
+		*/
+		public int ${editMethodName}(${poName} po);
+		/**
+		* 根据id查询
+		*
+		* @param po
+		*/
+		public ${poName} ${queryByIdMethodName}(${poName} po);
+		/**
+		* 分页查询
+		*
+		* @param po
+		*/
+		public List &lt; ${poName} &gt; ${queryPageMethodName}(${poName} po);
+		/**
+		* 数量查询
+		*
+		* @param po
+		*/
+		public Long ${countMethodName}(${poName} po);
+		/**
+		* 获取最大code数据
+		*
+		* @param po
+		*/
+		public ${poName} ${maxCode}();
+		}
+	</bodyStr>
+</mapper>

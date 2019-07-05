@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "imitate/mybatis/code/generation/builder/xml/mybatis-3-code-generation.dtd">
+<!-- namespace="com.sx.enterprise.dao.param.config.IParamConfigDao" -->
+<mapper fileType="IDAO">
+	<!-- package com.sx.enterprise.dao.param.config; -->
+	<!-- import java.util.List; -->
+	<!-- import com.sx.enterprise.entity.po.param.config.ParamConfigPO; -->
+
+	public interface #{IDaoName} {
+	<insert id="" methodType="INSERT">
+		public int #{insertMethodName}(#{poName} po);
+	</insert>
+	<delete id="" methodType="DELETE">
+		public int #{deleteByIdMethodName}(#{poName} po);
+	</delete>
+	<delete id="" methodType="DELETE_BY_FIELD" >
+		public int #{deleteByIdMethodName}(#{poName} po);
+	</delete>
+	<update id="" methodType="UPDATE">
+		public int #{editMethodName}(#{poName} po);
+	</update>
+	<update id="" methodType="UPDATE_BY_FIELD">
+		public int #{editMethodName}(#{poName} po);
+	</update>
+
+
+	<select id="" methodType="SELECT">
+		public #{poName} #{queryByIdMethodName}(#{poName} po);
+	</select>
+
+	<select id="" methodType="SELECT_LIST">
+		public List<#{poName}> #{queryListMethodName}(#{poName} po);
+	</select>
+	<select id="" methodType="SELECT_PAGE">
+		public List<#{poName}> #{queryPageMethodName}(#{poName} po);
+	</select>
+	<select id="" methodType="SELECT_COUNT">
+		public Long #{countMethodName}(#{poName} po);
+	</select>
+	<select id="" methodType="SELECT_MAX">
+		public #{paName} getMaxCode();
+	</select>
+	<select id="" methodType="SELECT_BY_FIELD">
+		public #{paName} getMaxCode();
+	</select>
+	}
+</mapper>

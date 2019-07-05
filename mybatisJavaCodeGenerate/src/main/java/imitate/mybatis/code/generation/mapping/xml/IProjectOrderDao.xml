@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sx.enterprise.dao.project.IProjectOrderDao">
+	<!-- 通用查询sql -->
+	<sql id="IProjectOrderDaoSelectSql">
+		select
+		id,order_num,order_type,project_id,project_name,initiate_id,initiate_type,initiate_name,apply_id,apply_type,apply_name,order_price,order_status,trade_status,is_delete,is_delete_initiate,is_delete_apply,remark,invoice_status,evaluate_status,edit_time,creation_time
+		from sx_t_e_project_order
+	</sql>
+	<!-- 通用where and sql -->
+	<sql id="IProjectOrderDaoWhereAndSql">
+		<where>
+			<if test="id !=null ">
+				and id = #{id}
+			</if>
+			<if test="orderNum !=null ">
+				and order_num = #{orderNum}
+			</if>
+			<if test="orderType !=null ">
+				and order_type = #{orderType}
+			</if>
+			<if test="projectId !=null ">
+				and project_id = #{projectId}
+			</if>
+			<if test="projectName !=null ">
+				and project_name = #{projectName}
+			</if>
+			<if test="initiateId !=null ">
+				and initiate_id = #{initiateId}
+			</if>
+			<if test="initiateType !=null ">
+				and initiate_type = #{initiateType}
+			</if>
+			<if test="initiateName !=null ">
+				and initiate_name = #{initiateName}
+			</if>
+			<if test="applyId !=null ">
+				and apply_id = #{applyId}
+			</if>
+			<if test="applyType !=null ">
+				and apply_type = #{applyType}
+			</if>
+			<if test="applyName !=null ">
+				and apply_name = #{applyName}
+			</if>
+			<if test="orderPrice !=null ">
+				and order_price = #{orderPrice}
+			</if>
+			<if test="orderStatus !=null ">
+				and order_status = #{orderStatus}
+			</if>
+			<if test="tradeStatus !=null ">
+				and trade_status = #{tradeStatus}
+			</if>
+			<if test="isDelete !=null ">
+				and is_delete = #{isDelete}
+			</if>
+			<if test="isDeleteInitiate !=null ">
+				and is_delete_initiate = #{isDeleteInitiate}
+			</if>
+			<if test="isDeleteApply !=null ">
+				and is_delete_apply = #{isDeleteApply}
+			</if>
+			<if test="remark !=null ">
+				and remark = #{remark}
+			</if>
+			<if test="invoiceStatus !=null ">
+				and invoice_status = #{invoiceStatus}
+			</if>
+			<if test="evaluateStatus !=null ">
+				and evaluate_status = #{evaluateStatus}
+			</if>
+			<if test="editTime !=null ">
+				and edit_time = #{editTime}
+			</if>
+			<if test="creationTime !=null ">
+				and creation_time = #{creationTime}
+			</if>
+		</where>
+	</sql>
+	<!-- 增加信息 -->
+	<insert id="add" parameterType="ProjectOrderPO">
+		insert into sx_t_e_project_order
+		(id,order_num,order_type,project_id,project_name,initiate_id,initiate_type,initiate_name,apply_id,apply_type,apply_name,order_price,order_status,trade_status,is_delete,is_delete_initiate,is_delete_apply,remark,invoice_status,evaluate_status,edit_time,creation_time)
+		values
+		(#{id},#{orderNum},#{orderType},#{projectId},#{projectName},#{initiateId},#{initiateType},#{initiateName},#{applyId},#{applyType},#{applyName},#{orderPrice},#{orderStatus},#{tradeStatus},#{isDelete},#{isDeleteInitiate},#{isDeleteApply},#{remark},#{invoiceStatus},#{evaluateStatus},#{editTime},#{creationTime})
+		<!-- 自动生成主键 -->
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER"> select LAST_INSERT_ID() </selectKey>
+	</insert>
+	<!-- 更新信息 -->
+	<update id="update" parameterType="ProjectOrderPO">
+		update sx_t_e_project_order
+		<set>
+			edit_time= sysdate(),
+			<if test="orderPrice !=null ">
+				order_price=#{orderPrice},
+			</if>
+			<if test="orderStatus !=null ">
+				order_status=#{orderStatus},
+			</if>
+			<if test="tradeStatus !=null ">
+				trade_status=#{tradeStatus},
+			</if>
+			<if test="remark !=null ">
+				remark=#{remark},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<!-- 根据id查询 -->
+	<select id="queryById" parameterType="ProjectOrderPO" resultMap="ProjectOrderMap">
+		<include refid="IProjectOrderDaoSelectSql"></include>
+		where id = #{id}
+	</select>
+	<!-- 查询满足条件的数量 -->
+	<select id="count" parameterType="ProjectOrderPO" resultType="java.lang.Long">
+		select count(id) from
+		sx_t_e_project_order
+		<include refid="IProjectOrderDaoWhereAndSql"></include>
+	</select>
+	<!-- 查询分页 -->
+	<select id="page" parameterType="ProjectOrderPO" resultMap="ProjectOrderMap">
+		<include refid="IProjectOrderDaoSelectSql"></include>
+		<include refid="IProjectOrderDaoWhereAndSql"></include>
+		order by id DESC
+		limit #{pageNumber},#{pageSize}
+	</select>
+	<!-- 查询集合 -->
+	<select id="queryList" parameterType="ProjectOrderPO" resultMap="ProjectOrderMap">
+		<include refid="IProjectOrderDaoSelectSql"></include>
+		<include refid="IProjectOrderDaoWhereAndSql"></include>
+		order by id DESC
+		<if test="pageNumber !=null and pageSize !=null">
+			limit #{pageNumber},#{pageSize}
+		</if>
+	</select>
+	<!-- 查询集合验证数据重复 -->
+	<select id="queryListValidate" parameterType="ProjectOrderPO" resultMap="ProjectOrderMap">
+		<include refid="IProjectOrderDaoSelectSql"></include>
+		<where>
+			<if test="id !=null ">
+				and id = #{id}
+			</if>
+			<if test="orderNum !=null ">
+				and order_num = #{orderNum}
+			</if>
+			<if test="orderType !=null ">
+				and order_type = #{orderType}
+			</if>
+			<if test="projectId !=null ">
+				and project_id = #{projectId}
+			</if>
+			<if test="projectName !=null ">
+				and project_name = #{projectName}
+			</if>
+			<if test="initiateId !=null ">
+				and initiate_id = #{initiateId}
+			</if>
+			<if test="initiateType !=null ">
+				and initiate_type = #{initiateType}
+			</if>
+			<if test="initiateName !=null ">
+				and initiate_name = #{initiateName}
+			</if>
+			<if test="applyId !=null ">
+				and apply_id = #{applyId}
+			</if>
+			<if test="applyType !=null ">
+				and apply_type = #{applyType}
+			</if>
+			<if test="applyName !=null ">
+				and apply_name = #{applyName}
+			</if>
+			<if test="orderPrice !=null ">
+				and order_price = #{orderPrice}
+			</if>
+			<if test="orderStatus !=null ">
+				and order_status = #{orderStatus}
+			</if>
+			<if test="tradeStatus !=null ">
+				and trade_status = #{tradeStatus}
+			</if>
+			<if test="isDelete !=null ">
+				and is_delete = #{isDelete}
+			</if>
+			<if test="isDeleteInitiate !=null ">
+				and is_delete_initiate = #{isDeleteInitiate}
+			</if>
+			<if test="isDeleteApply !=null ">
+				and is_delete_apply = #{isDeleteApply}
+			</if>
+			<if test="remark !=null ">
+				and remark = #{remark}
+			</if>
+			<if test="invoiceStatus !=null ">
+				and invoice_status = #{invoiceStatus}
+			</if>
+			<if test="evaluateStatus !=null ">
+				and evaluate_status = #{evaluateStatus}
+			</if>
+			<if test="editTime !=null ">
+				and edit_time = #{editTime}
+			</if>
+			<if test="creationTime !=null ">
+				and creation_time = #{creationTime}
+			</if>
+		</where>
+		order by id DESC
+	</select>
+	<!-- 更新状态 -->
+	<update id="editStatus" parameterType="ProjectOrderPO">
+		update sx_t_e_project_order
+		<set>
+			<if test="orderStatus !=null ">
+				order_status=#{orderStatus},
+			</if>
+			<if test="tradeStatus !=null ">
+				trade_status=#{tradeStatus},
+			</if>
+			<if test="invoiceStatus !=null ">
+				invoice_status=#{invoiceStatus},
+			</if>
+			<if test="evaluateStatus !=null ">
+				evaluate_status=#{evaluateStatus},
+			</if>
+		</set>
+		<where>
+			id = #{id}
+		</where>
+	</update>
+	<resultMap id="ProjectOrderMap" type="ProjectOrderPO">
+		<result property="id" column="id" />
+		<result property="orderNum" column="order_num" />
+		<result property="orderType" column="order_type" />
+		<result property="projectId" column="project_id" />
+		<result property="projectName" column="project_name" />
+		<result property="initiateId" column="initiate_id" />
+		<result property="initiateType" column="initiate_type" />
+		<result property="initiateName" column="initiate_name" />
+		<result property="applyId" column="apply_id" />
+		<result property="applyType" column="apply_type" />
+		<result property="applyName" column="apply_name" />
+		<result property="orderPrice" column="order_price" />
+		<result property="orderStatus" column="order_status" />
+		<result property="tradeStatus" column="trade_status" />
+		<result property="isDelete" column="is_delete" />
+		<result property="isDeleteInitiate" column="is_delete_initiate" />
+		<result property="isDeleteApply" column="is_delete_apply" />
+		<result property="remark" column="remark" />
+		<result property="invoiceStatus" column="invoice_status" />
+		<result property="evaluateStatus" column="evaluate_status" />
+		<result property="editTime" column="edit_time" />
+		<result property="creationTime" column="creation_time" />
+		<!-- name like CONCAT('%', #{name}, '%') -->			<!-- 单个属性数据 <association property="bank" javaType="MConsumerBankMappingEntityPO" column="consumer_id = id , consumer_type = consumer_nature " select="com.sx.manage.dao.bank.IMConsumerBankMapDaoMapper.queryOne" 
+			> </association> -->
+		<!-- 集合属性数据 <collection property="function_list" ofType="MFunctionEntityPO" column="pid = id , data_status = data_status " select="get_function_list" > </collection> -->
+	</resultMap>
+</mapper> 
+ 
+ 

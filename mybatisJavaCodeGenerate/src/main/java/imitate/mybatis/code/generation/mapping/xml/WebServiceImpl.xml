@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="ServiceImpl">
+	<bodyCode>
+		package ${webServiceImplPackage};
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import ${webServiceImport};
+import ${voImport};
+import ${formImport};
+import ${bizImport}
+
+/**
+ * ${table_comment}
+ * 
+ * @author Administrator
+ *
+ */
+@Service("${webServiceImplParam}")
+public class ${webServiceImplName}  implements ${webServiceName} {
+	private Logger log = LoggerFactory.getLogger(this.getClass());
+
+	//${table_comment}	
+	@Resource(name = "${bizImplParam}")
+	private ${bizName} ${bizImplParam};
+
+	@Override
+	public ${resultVO}&lt;${voName}&gt; ${add}(${formName} paraForm, ${loginVO} loginVO) {
+		log.debug("新增${table_comment}form={},loginVO={}", paraForm, loginVO);
+		return ${bizImplParam}.${add}(form);
+	}
+
+	@Override
+	public ${resultVO}&lt;?&gt; ${update}(${formName} paraForm, ${loginVO} loginVO) {
+		log.debug("修改${table_comment}form={},loginVO={}", paraForm, loginVO);
+		return ${bizImplParam}.${update}(form);
+	}
+
+	@Override
+	public ${resultVO}&lt;?&gt; ${deleteById}(${formName} paraForm, ${loginVO} loginVO) {
+		log.debug("删除${table_comment}form={},loginVO={}", paraForm, loginVO);
+		return ${bizImplParam}.${deleteById}(form);
+	}
+
+	@Override
+	public ${resultVO}&lt;?&gt; ${queryById}(${formName}  paraForm) {
+		log.debug("根据id查询${table_comment}form={}", paraForm);
+		return ${bizImplParam}.${queryById}(form);
+	}
+
+	@Override
+	public ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${list}(${formName} paraForm) {
+		log.debug("根据form查询${table_comment}list,form={}", paraForm);
+		return ${bizImplParam}.${list}(form);
+	}
+
+	@Override
+	public  ${resultVO}&lt;List&lt;${voName}&gt;&gt; ${page}(${formName} paraForm) {
+		log.debug("根据form查询${table_comment}列表,form={}", paraForm);
+		return ${bizImplParam}.${page}(paraForm);
+	}
+	
+	}
+
+	</bodyCode>
+	<!-- 有自己查询方法的字段 -->
+	<queryField>
+	</queryField>
+	<!-- 有自己更新方法的字段 -->
+	<updateField>
+	</updateField>
+	<!-- 有自己删除方法的字段 -->
+	<deleteField>
+	</deleteField>
+	<!-- 有自己排序方法的字段 -->
+	<orderByField>
+	</orderByField>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "E:\workspace\salary_3\mybatisJavaCodeGenerate\src\main\java\imitate\mybatis\code\generation\builder\xml\create_mapper.dtd">
+<mapper fileType="IService">
+	<bodyCode>
+		package ${servicePackage};
+
+		import java.util.List;
+		import ${poImport};
+		import ${voImport};
+		import ${formImport};
+
+		public interface ${serviceName} {
+
+		/*** 增加 ***/
+		public ${resultObjectVO}&lt;${formName}&gt; ${add}(${formName} paraForm);
+
+		/*** 批量新增 ***/
+		public ${resultBooleanVO}&lt;?&gt; ${addBatch}(${formName} paraForm);
+		
+		/*** 编辑 ***/
+		public ${resultBooleanVO}&lt;?&gt; ${update}(${formName} paraForm);
+		/*** 根据对象获取对象 ***/
+		public ${resultBooleanVO}&lt;?&gt; ${deleteById}(${formName} paraForm);
+
+		/*** 根据对象获取对象 ***/
+		public ${resultObjectVO}&lt;${voName}&gt; ${queryById}(${formName} paraForm);
+
+		/*** 根据对象获取分页数据 ***/
+		public ${resultListVO}&lt;List&lt;${voName}&gt;&gt; ${list}(${formName} paraForm);
+
+		/*** 根据获取集合总数 ***/
+		public ${resultObjectVO} ${count}(${formName} paraForm);
+
+		/*** 查询最大编码 ***/
+		public ${resultObjectVO}&lt;${voName}&gt; getMaxCode();
+
+		/*** 查询翻页信息 ***/
+		public ${resultListVO}&lt;List&lt;${voName}&gt;&gt; ${page}(${formName} paraForm);
+
+		}
+	</bodyCode>
+	<!-- 有自己查询方法的字段 -->
+	<queryField>
+		/**
+		* 根据${queryField}查询
+		*
+		* @param paraForm
+		*/
+		public ${resultObjectVO}&lt;${voName}&gt; queryBy${queryField}(${formName} paraForm);
+	</queryField>
+	<!-- 有自己更新方法的字段 -->
+	<updateField>
+		/**
+		* 根据${updateField}更新信息
+		*
+		* @param paraForm
+		*/
+		public ${resultBooleanVO}&lt;?&gt; updateBy${updateField}(${formName} paraForm);
+	</updateField>
+	<!-- 有自己删除方法的字段 -->
+	<deleteField>
+		/**
+		* 根据${deleteField}删除
+		*
+		* @param paraForm
+		*/
+		public ${resultBooleanVO}&lt;?&gt; deleteBy${deleteField}(${formName} paraForm);
+	</deleteField>
+	<!-- 有自己排序方法的字段 -->
+	<orderByField>
+		/**
+		* 查询需要交换${orderField}的数据
+		*/
+		public ${resultObjectVO}&lt;${voName}&gt; queryBy${orderField}(${formName} paraForm);
+		/**
+		* 获取最大的排序值
+		*
+		* @param paraForm
+		*/
+		public Integer queryMax${orderField}(${formName} paraForm);
+	</orderByField>
+</mapper>

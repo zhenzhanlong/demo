@@ -1,0 +1,252 @@
+package com.sx.enterprise.mybatis.po 
+import java.io.Serializable; 
+import com.sx.common.util.json.JackJsonUtil; 
+import com.fasterxml.jackson.annotation.JsonInclude; 
+ /**资金交易信息**/public class sx_t_e_tradePO extends BasePO implements Serializable { 
+	 /** 序列化 */
+	 private static final long serialVersionUID = 1561097803601L;
+	/** 数据ID **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  id;
+	/** 订单编号 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  tradeNum;
+	/** 订单状态 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  tradeStatus;
+	/** 订单类型:缴纳、退款 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  tradeType;
+	/** 交易分类（如：保证金：缴纳、退款） **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  tradeClassify;
+	/** 服务订单id **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  orderId;
+	/** 第三方订单号（如：支付中心订单号） **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  thirdPartyOrderId;
+	/** 订单金额 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private BigDecimal  amount;
+	/** 操作人类型：公司管理员、个人、平台管理员 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  consumerType;
+	/** 数据创建人 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  createConsumerId;
+	/** 出账商铺id **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  fromStoreId;
+	/** 出账人id **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  fromConsumerId;
+	/** 入账商铺id **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  toStoreId;
+	/** 入账人id **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Integer  toConsumerId;
+	/** 数据删除表示 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  isDelete;
+	/** 出账方删除 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  isDeleteFrom;
+	/** 入账方删除 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  isDeleteTo;
+	/** 创建日期 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  createTime;
+	/** 修改时间 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  updateTime;
+	/** 说明、备注 **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private String  remark;
+	/** 第三方系统（1：高薪工资，2：企业服务，3：兼职服务） **/ 
+ 	@JsonInclude(JsonInclude.Include.NON_NULL) 
+	private Character  thirdParty;
+ 
+
+	public sx_t_e_tradePO(){ 
+		super() ; 
+	} 
+	public sx_t_e_tradePO(Integer  id ){
+		super() ; 
+		this.id = id ;
+	} 
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getTradeNum() {
+		return this.tradeNum;
+	}
+
+	public void setTradeNum(String tradeNum) {
+		this.tradeNum = tradeNum;
+	}
+
+	public String getTradeStatus() {
+		return this.tradeStatus;
+	}
+
+	public void setTradeStatus(String tradeStatus) {
+		this.tradeStatus = tradeStatus;
+	}
+
+	public String getTradeType() {
+		return this.tradeType;
+	}
+
+	public void setTradeType(String tradeType) {
+		this.tradeType = tradeType;
+	}
+
+	public String getTradeClassify() {
+		return this.tradeClassify;
+	}
+
+	public void setTradeClassify(String tradeClassify) {
+		this.tradeClassify = tradeClassify;
+	}
+
+	public Integer getOrderId() {
+		return this.orderId;
+	}
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public String getThirdPartyOrderId() {
+		return this.thirdPartyOrderId;
+	}
+
+	public void setThirdPartyOrderId(String thirdPartyOrderId) {
+		this.thirdPartyOrderId = thirdPartyOrderId;
+	}
+
+	public BigDecimal getAmount() {
+		return this.amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
+	public String getConsumerType() {
+		return this.consumerType;
+	}
+
+	public void setConsumerType(String consumerType) {
+		this.consumerType = consumerType;
+	}
+
+	public Integer getCreateConsumerId() {
+		return this.createConsumerId;
+	}
+
+	public void setCreateConsumerId(Integer createConsumerId) {
+		this.createConsumerId = createConsumerId;
+	}
+
+	public Integer getFromStoreId() {
+		return this.fromStoreId;
+	}
+
+	public void setFromStoreId(Integer fromStoreId) {
+		this.fromStoreId = fromStoreId;
+	}
+
+	public Integer getFromConsumerId() {
+		return this.fromConsumerId;
+	}
+
+	public void setFromConsumerId(Integer fromConsumerId) {
+		this.fromConsumerId = fromConsumerId;
+	}
+
+	public Integer getToStoreId() {
+		return this.toStoreId;
+	}
+
+	public void setToStoreId(Integer toStoreId) {
+		this.toStoreId = toStoreId;
+	}
+
+	public Integer getToConsumerId() {
+		return this.toConsumerId;
+	}
+
+	public void setToConsumerId(Integer toConsumerId) {
+		this.toConsumerId = toConsumerId;
+	}
+
+	public String getIsDelete() {
+		return this.isDelete;
+	}
+
+	public void setIsDelete(String isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public String getIsDeleteFrom() {
+		return this.isDeleteFrom;
+	}
+
+	public void setIsDeleteFrom(String isDeleteFrom) {
+		this.isDeleteFrom = isDeleteFrom;
+	}
+
+	public String getIsDeleteTo() {
+		return this.isDeleteTo;
+	}
+
+	public void setIsDeleteTo(String isDeleteTo) {
+		this.isDeleteTo = isDeleteTo;
+	}
+
+	public String getCreateTime() {
+		return this.createTime;
+	}
+
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getUpdateTime() {
+		return this.updateTime;
+	}
+
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public String getRemark() {
+		return this.remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public Character getThirdParty() {
+		return this.thirdParty;
+	}
+
+	public void setThirdParty(Character thirdParty) {
+		this.thirdParty = thirdParty;
+	}
+
+@Override 
+ public String toString() { 
+ return "sx_t_e_tradePO:"+JackJsonUtil.objToJson(this); 
+  } 
+ } //end class
